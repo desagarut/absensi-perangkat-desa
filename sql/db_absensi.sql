@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 18, 2024 at 09:04 PM
+-- Generation Time: Mar 18, 2024 at 09:42 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -224,13 +224,13 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 
 CREATE TABLE `tb_guru` (
   `id_guru` int NOT NULL,
-  `nuptk` varchar(24) NOT NULL,
-  `nama_guru` varchar(255) NOT NULL,
-  `jenis_kelamin` enum('Laki-laki','Perempuan') NOT NULL,
-  `alamat` text NOT NULL,
-  `no_hp` varchar(32) NOT NULL,
-  `unique_code` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nuptk` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_guru` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `jenis_kelamin` enum('Laki-laki','Perempuan') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_hp` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `unique_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tb_guru`
@@ -247,7 +247,7 @@ INSERT INTO `tb_guru` (`id_guru`, `nuptk`, `nama_guru`, `jenis_kelamin`, `alamat
 
 CREATE TABLE `tb_kehadiran` (
   `id_kehadiran` int NOT NULL,
-  `kehadiran` enum('Hadir','Sakit','Izin','Tanpa keterangan') NOT NULL
+  `kehadiran` enum('Hadir','Sakit','Izin','Tanpa keterangan') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -268,7 +268,7 @@ INSERT INTO `tb_kehadiran` (`id_kehadiran`, `kehadiran`) VALUES
 
 CREATE TABLE `tb_kelas` (
   `id_kelas` int NOT NULL,
-  `kelas` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `kelas` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jurusan` enum('SUKAJADI','RANCABANGO') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -288,12 +288,12 @@ INSERT INTO `tb_kelas` (`id_kelas`, `kelas`, `jurusan`) VALUES
 
 CREATE TABLE `tb_perangkat` (
   `id_perangkat` int NOT NULL,
-  `nipd` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nama_perangkat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nipd` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_perangkat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_kelas` int NOT NULL,
-  `jenis_kelamin` enum('Laki-laki','Perempuan') NOT NULL,
-  `no_hp` varchar(32) NOT NULL,
-  `unique_code` varchar(64) NOT NULL
+  `jenis_kelamin` enum('Laki-laki','Perempuan') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_hp` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `unique_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -316,7 +316,7 @@ CREATE TABLE `tb_presensi_guru` (
   `jam_masuk` time DEFAULT NULL,
   `jam_keluar` time DEFAULT NULL,
   `id_kehadiran` int NOT NULL,
-  `keterangan` varchar(255) NOT NULL
+  `keterangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -333,7 +333,7 @@ CREATE TABLE `tb_presensi_perangkat` (
   `jam_masuk` time DEFAULT NULL,
   `jam_keluar` time DEFAULT NULL,
   `id_kehadiran` int NOT NULL,
-  `keterangan` varchar(255) NOT NULL
+  `keterangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -344,22 +344,22 @@ CREATE TABLE `tb_presensi_perangkat` (
 
 CREATE TABLE `users` (
   `id` int UNSIGNED NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `username` varchar(30) DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `is_superadmin` tinyint(1) NOT NULL DEFAULT '0',
-  `password_hash` varchar(255) NOT NULL,
-  `reset_hash` varchar(255) DEFAULT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `reset_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `reset_at` datetime DEFAULT NULL,
   `reset_expires` datetime DEFAULT NULL,
-  `activate_hash` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `status_message` varchar(255) DEFAULT NULL,
+  `activate_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status_message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `force_pass_reset` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
